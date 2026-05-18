@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+    --color-neutral-900: hsl(0, 0%, 7%);
+    --color-neutral-800: hsl(0, 0%, 15%);
+    --color-neutral-500: hsl(240, 3%, 46%);
+    --color-neutral-400: hsl(240, 1%, 59%);
+    --color-neutral-0: hsl(0, 0%, 100%);
+  
+    --color-blue-600: hsl(214, 100%, 55%);
+    --color-blue-400: hsl(210, 100%, 65%);
+  
+    --color-red-500: hsl(354, 63%, 57%);
+    --color-green-500: hsl(140, 63%, 57%);
+    --color-yellow-400: hsl(49, 85%, 70%);
+ 
+    --font-sans: "Sora", sans-serif;
+  }
+
+  @layer components {
+  .bullet::before {
+    @apply size-4 rounded-full border-2 border-neutral-400
+           flex items-center justify-center
+           text-black text-xs md:hidden ;
+  }
+
+  .bullet {
+    @apply relative md:border-neutral-400 md:border-2 md:rounded-2xl md:p-2;
+  }
+
+  .bullet::before {
+    @apply absolute left-0 top-1/2 -translate-y-1/2;
+  }
+  .actif{
+     @apply before:bg-sky-400 md:border-blue-400 md:text-blue-400;
+  }
+}
+  
+
+  </style>
+  <title>Frontend Mentor | Typing Speed Test</title>
+
+</head>
+<body class="bg-neutral-900 text-neutral-0 p-2">
+  <header>
+      <div class="header flex justify-between p-1 mb-10">
+        <picture>
+          <source media="(min-width: 768px)" srcset="./assets/images/logo-large.svg">
+          <img src="./assets/images/logo-small.svg">
+        </picture>
+    
+        <div class="flex gap-1 items-center">
+          <img src="./assets/images/icon-personal-best.svg">
+          <p class="ml-1.5 text-neutral-400">best:</p>
+          <p class="text-neutral-300 best-wbm">0 WPM</p>
+        </div>
+      </div>
+  </header>
+  <main class="flex flex-col gap-3 relative">
+     <section class="menu-section flex flex-col gap-4 md:px-20">
+      <div class="flex flex-col gap-5
+      md:flex-row md:justify-center ">
+        <div class="flex justify-around gap-1.5">
+          <p class="flex flex-col items-center gap-1 
+          md:flex-row">
+            <span class="text-neutral-400">WPM:</span>
+            <span class="text-3xl font-bold wbm-result">0</span>
+          </p>
+          <span class="border-1 border-neutral-400"></span>
+          <p class="flex flex-col items-center gap-1
+          md:flex-row">
+            <span class="text-neutral-400">Accuracy:</span>
+            <span class="text-3xl font-bold accuracy-result">100%</span>
+          </p>
+          <span class="border-1 border-neutral-400"></span>
+          <p class="flex flex-col items-center gap-1
+          md:flex-row">
+            <span class="text-neutral-400">Time:</span>
+            <span class="text-3xl font-bold timer">60s</span>
+          </p>
+        </div>
+        <div class="option-div flex gap-1 justify-around mt-2 w-full md:mt-0 md:flex-row">
+          <div class="difficulty-lvl relative md:flex md:flex-row md:static md:items-center">
+            <p class="difficulty-option mb-3 w-[10rem] text-center 
+            px-2 border-2 border-neutral-500 rounded-sm p-1 
+            after:content-[url('./assets/images/icon-down-arrow.svg')] 
+            after:inline-block after:ml-3
+            after:rotate-180 cursor-pointer
+            hover:animate-pulse active:animate-bounce md:hidden"
+            data-difficulty="easy">Easy</p>
+            <p class="hidden cursor-pointer md:block">difficulty:</p>
+            <ul class="text-center cursor-pointer absolute z-40 left-5 cursor-pointer md:static
+            bg-neutral-800 p-1 w-[8rem] flex flex-col gap-1.5 hidden md:block md:w-auto md:static md:bg-neutral-900
+            animate__animated md:flex  md:flex-row ">
+              <li class="relative before:absolute 
+               bullet 
+               actif 
+              " data-difficulty="easy">Easy</li>
+              <hr class="text-neutral-500">
+              <li class="relative before:absolute
+               bullet 
+              " data-difficulty="medium">Medium</li>
+              <hr class="text-neutral-500">
+              <li class="relative before:absolute
+               bullet
+              " data-difficulty="hard">Hard</li>
+            </ul>
+          </div>
+
+          <div class="mode-lvl relative md:flex md:flex-row md:static md:items-center">
+            <p class="mode-option after:content-[url('./assets/images/icon-down-arrow.svg')] 
+            after:inline-block after:ml-3
+            after:rotate-180 cursor-pointer
+            difficulty-option mb-3 w-[10rem] text-center border-2
+            border-neutral-500 rounded-sm p-1
+            hover:animate-pulse active:animate-bounce md:hidden "
+            data-mode="timed">Timed (60s)</p>
+            <p class="hidden cursor-pointer md:block">Mode:</p>
+            <ul class="text-center cursor-pointer absolute z-40 left-3 cursor-pointer
+            bg-neutral-800 p-1 w-[9rem] flex flex-col gap-1.5 hidden md:block md:w-full md:static md:flex md:flex-row md:bg-neutral-900
+            animate__animated">
+              <li class="relative before:absolute
+               bullet
+               actif
+              " data-mode="timed">Timed (60s)</li>
+              <hr class="text-neutral-500">
+              <li class="relative before:absolute
+               bullet
+              " data-mode="passage">Passage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr class="text-neutral-500">
+    </section>
+    
+    <section class="test-section relative flex flex-col items-center gap-1.5">
+      <div class="textarea-not-started absolute inset-0 backdrop-blur-sm bg-black/30
+      flex flex-col gap-4 items-center justify-center z-20 hidden">
+        <button class="bg-blue-600 text-neutral-100 px-4 py-2 font-bold
+        text-2xl rounded-2xl
+        transition-all duration-500 ease-in-out hover:scale-[1.2] active:scale-[0.9]
+         "> <span class="absolute inset-0"></span>
+        Start Typing text
+        </button>
+        <p class="font-bold text-neutral-100
+        text-2xl">or click the text and start typing</p>
+      </div>
+      
+      <div class="textarea-div px-3 min-h-100 relative md:px-20">
+        <p class="text-neutral-400 font-bold text-3xl md:text-4xl md:px-15">
+          <!-- text will be rendered here-->
+        </p>
+        <textarea class="text-neutral-100 absolute opacity-0 text-3xl inset-0 z-10"></textarea>
+      </div>
+      <hr class="text-neutral-500 w-full">
+      <button class="bg-neutral-600 text-neutral-100 px-4 py-2 font-bold
+        text-2xl rounded-2xl after:content-[url('./assets/images/icon-restart.svg')]
+        after:ml-3 reset-btn
+        transition-all duration-500 ease-in-out hover:scale-[1.2] active:scale-[0.9]">Reset Test</button>
+    </section>
+    <template id="result-template">
+      <section class=" flex flex-col items-center gap-4
+          px-2.5
+          before:content-[url('./assets/images/pattern-star-2.svg')]
+          before:inline-block before:self-start before:translate-y-15
+          after:content-[url('./assets/images/pattern-star-1.svg')]
+          after:inline-block after:self-end
+          bg-no-repeat bg-bottom bg-contain">
+        <div class="text-center text-div
+          before:content-[url('./assets/images/icon-completed.svg')]
+          before:inline-block before:shadow-xl before:shadow-green-500 before:rounded-full">
+          <h2 class="text-neutral-0 text-3xl font-bold
+            mb-3 mt-3">Test Complete!</h2>
+          <p class="text-neutral-500 text-xl">Solid run. Keep pushing
+            to beat your high score.</p>
+        </div>
+        <div class="flex flex-col items-left w-[80%] border-1 border-neutral-400
+          p-4 rounded-2xl gap-2">
+          <p class="text-neutral-400 text-xl">WBP:</p>
+          <p class="wbp-result text-2xl font-bold">85</p>
+        </div>
+        <div class="flex flex-col items-left w-[80%] border-1 border-neutral-400
+              p-4 rounded-2xl gap-2">
+          <p class="text-neutral-400 text-xl">Accuracy:</p>
+          <p class="accuracy-result text-2xl text-red-500 font-bold">85</p>
+        </div>
+        <div class="flex flex-col items-left w-[80%] border-1 border-neutral-400
+              p-4 rounded-2xl gap-2">
+          <p class="text-neutral-400 text-xl">characters:</p>
+          <p class="characters-result text-2xl font-bold">
+            <span class="correct-char text-green-500">150</span> /
+            <span class="uncorrect-char text-red-500">5</span>
+          </p>
+        </div>
+        <button class="bg-neutral-600 text-neutral-100 px-4 py-2 font-bold
+                  text-2xl rounded-2xl after:content-[url('./assets/images/icon-restart.svg')]
+                  after:ml-3 reset-btn
+                  transition-all duration-500 ease-in-out hover:scale-[1.2] active:scale-[0.9]">Go Again</button>
+      
+      </section>
+    </template>
+    <script type="module" src="./app.js"></script>
+  </main>
+
+  <footer class="attribution text-center mt-10">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Elmo_sera</a>.
+  </footer>
+</body>
+</html>
