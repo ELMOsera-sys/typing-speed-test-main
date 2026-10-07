@@ -8,7 +8,7 @@ function Header(){
         <header>
       <div className="header flex justify-between p-1 mb-10">
         <picture>
-          <source media="(min-width: 768px)" srcSet="./assets/images/logo-large.svg" />
+          <source media="(min-width: 768px)" srcSet="assets/images/logo-large.svg" />
           <img src="./assets/images/logo-small.svg" />
         </picture>
     
